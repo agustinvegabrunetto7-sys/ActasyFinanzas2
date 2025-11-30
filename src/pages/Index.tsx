@@ -73,14 +73,14 @@ const Index = () => {
                 <Lightbulb className="w-16 h-16 text-sky-400 mb-4 neon-glow" />
                 <h3 className="text-2xl font-semibold text-white mb-2">Innovación</h3>
                 <p className="text-gray-300 text-center">
-                  Buscamos constantemente nuevas formas de mejorar y optimizar la forma de cumunicación de nuestras decisiones, como esta web.
+                  Buscamos constantemente nuevas formas de mejorar y optimizar nuestros procesos financieros.
                 </p>
               </div>
               <div className="flex flex-col items-center p-6 bg-black/30 rounded-xl border border-sky-500/30 shadow-lg hover:shadow-sky-400/50 transition-shadow duration-300">
                 <Handshake className="w-16 h-16 text-sky-400 mb-4 neon-glow" />
                 <h3 className="text-2xl font-semibold text-white mb-2">Transparencia</h3>
                 <p className="text-gray-300 text-center">
-                  Garantizamos la claridad y accesibilidad de toda la información financiera con esta página.
+                  Garantizamos la claridad y accesibilidad de toda la información financiera.
                 </p>
               </div>
               <div className="flex flex-col items-center p-6 bg-black/30 rounded-xl border border-sky-500/30 shadow-lg hover:shadow-sky-400/50 transition-shadow duration-300">
@@ -91,6 +91,17 @@ const Index = () => {
                 </p>
               </div>
             </div>
+          </GlassCard>
+        </div>
+      </section>
+
+      {/* Nueva sección de comunicación */}
+      <section className="relative z-20 bg-black py-20 px-4 flex items-center justify-center">
+        <div className="max-w-4xl mx-auto text-center">
+          <GlassCard className="text-white">
+            <h2 className="text-3xl sm:text-4xl font-bold text-sky-300 neon-glow">
+              Aquí encontrarás todas las actas y la gestión financiera de nuestro centro de estudiantes.
+            </h2>
           </GlassCard>
         </div>
       </section>

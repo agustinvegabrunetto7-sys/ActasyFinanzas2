@@ -1,6 +1,7 @@
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import AuroraBackground from "@/components/AuroraBackground";
-import ScrollDownIndicator from "@/components/ScrollDownIndicator"; // Import the new component
+import ScrollDownIndicator from "@/components/ScrollDownIndicator";
+import MoneySymbols from "@/components/MoneySymbols"; // Import the new component
 import React, { useState, useEffect } from "react";
 
 const Index = () => {
@@ -11,10 +12,9 @@ const Index = () => {
       setScrollY(window.scrollY);
     };
 
-    // Add a small delay to ensure the scroll listener is attached after render
     const timeoutId = setTimeout(() => {
       window.addEventListener("scroll", handleScroll);
-    }, 100); // Small delay
+    }, 100);
 
     return () => {
       clearTimeout(timeoutId);
@@ -24,18 +24,18 @@ const Index = () => {
 
   const scrollThreshold = 200; // Pixels scrolled before animation completes
 
-  // Calculate opacity: starts at 0, reaches 1 at scrollThreshold
   const opacity = Math.min(1, scrollY / scrollThreshold);
-  // Calculate translateY: starts at 40px, reaches 0px at scrollThreshold
   const translateY = Math.max(0, 40 - (scrollY / scrollThreshold) * 40);
 
   return (
-    <AuroraBackground className="min-h-[150vh]"> {/* Make it scrollable */}
+    <AuroraBackground className="min-h-[150vh]">
       
-      <ScrollDownIndicator /> {/* Add the new component here, at the top */}
+      <ScrollDownIndicator />
 
-      <div className="max-w-5xl w-full mx-auto p-4 flex flex-col items-center justify-center min-h-screen text-center">
+      <div className="max-w-5xl w-full mx-auto p-4 flex flex-col items-center justify-center min-h-screen text-center relative"> {/* Added relative positioning */}
         
+        <MoneySymbols scrollY={scrollY} h1TranslateY={translateY} /> {/* Add MoneySymbols here */}
+
         {/* Título principal: Grande, negrita, celeste brillante */}
         <h1 
           className="text-6xl sm:text-8xl md:text-9xl font-extrabold tracking-tighter text-sky-400 drop-shadow-2xl mb-4"

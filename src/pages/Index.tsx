@@ -31,10 +31,10 @@ const Index = () => {
             src="/EUGABLANCO.png"
             alt="Estudiantes Unidos Logo"
             className="absolute top-[5%] left-1/2 -translate-x-1/2 
-                       w-[calc(256px*0.97)] h-[calc(256px*0.97)] 
+                       w-[calc(256px*0.97*0.75)] h-[calc(256px*0.97*0.75)] 
                        sm:w-[calc(160px*0.97)] sm:h-[calc(160px*0.97)] 
                        md:w-[calc(192px*0.97)] md:h-[calc(192px*0.97)] 
-                       drop-shadow-lg" // Reducido en un 3%
+                       drop-shadow-lg" 
           />
           <h1
             className="text-5xl sm:text-8xl md:text-8xl font-extrabold tracking-tighter drop-shadow-2xl mb-4 text-sky-400"

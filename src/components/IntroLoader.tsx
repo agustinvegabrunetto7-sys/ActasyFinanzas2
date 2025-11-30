@@ -13,7 +13,7 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
 
   const mainTextLines = ["ESTUDIANTES", "UNIDOS"];
   const subtitleWords = ["Finanzas", "Actas", "Transparencia"];
-  const loadingDuration = 13000; // Aumentado a 13 segundos (9 + 4)
+  const loadingDuration = 18000; // Aumentado a 18 segundos (13 + 5)
   const intervalTime = 50; // Actualizar cada 50ms
 
   // Calcular el total de caracteres para la revelación lineal del texto principal
@@ -126,7 +126,6 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
       <div
         className={cn(
           "absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-4 transition-all duration-1000 ease-out delay-500",
-          // showSubtitleLine ? "opacity-100" : "opacity-0" // Ya no es necesario el delay, aparece instantáneo
           "opacity-100" // Siempre visible desde el inicio
         )}
       >

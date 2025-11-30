@@ -7,26 +7,8 @@ import { Lightbulb, Handshake, ShieldCheck } from "lucide-react"; // Import icon
 import { cn } from "@/lib/utils"; // Import cn for conditional class names
 
 const Index = () => {
-  const [scrollY, setScrollY] = useState(0);
   const [showIntro, setShowIntro] = useState(true); // State to control intro visibility
   const [heroAnimated, setHeroAnimated] = useState(false); // State for subtitle animation
-
-  useEffect(() => {
-    if (!showIntro) { // Only add scroll listener after intro is complete
-      const handleScroll = () => {
-        setScrollY(window.scrollY);
-      };
-
-      const timeoutId = setTimeout(() => {
-        window.addEventListener("scroll", handleScroll);
-      }, 100);
-
-      return () => {
-        clearTimeout(timeoutId);
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }
-  }, [showIntro]); // Re-run effect when showIntro changes
 
   const handleIntroComplete = () => {
     setShowIntro(false);
@@ -40,28 +22,10 @@ const Index = () => {
     return <IntroLoader onComplete={handleIntroComplete} />;
   }
 
-  // --- Animaciones de la Sección "Nuestra Misión" ---
-  const missionStartScroll = 500; // Posición de scroll donde la misión empieza a aparecer
-  const missionEndScroll = 800;   // Posición de scroll donde la animación de la misión se completa
-
-  const missionProgress = Math.min(1, Math.max(0, (scrollY - missionStartScroll) / (missionEndScroll - missionStartScroll)));
-
-  const missionOpacity = missionProgress;
-  const missionSlideY = Math.max(0, 50 - missionProgress * 50); // Se desliza hacia arriba de 50px a 0px
-
-  // --- Animaciones de la Sección "Nuestros Valores" ---
-  const valuesStartScroll = 1000; // Posición de scroll donde los valores empiezan a aparecer
-  const valuesEndScroll = 1300;   // Posición de scroll donde la animación de los valores se completa
-
-  const valuesProgress = Math.min(1, Math.max(0, (scrollY - valuesStartScroll) / (valuesEndScroll - valuesStartScroll)));
-
-  const valuesOpacity = valuesProgress;
-  const valuesSlideY = Math.max(0, 50 - valuesProgress * 50); // Se desliza hacia arriba de 50px a 0px
-
   return (
     <>
       {/* Sección Hero */}
-      <AuroraBackground className="min-h-screen"> {/* Ajustado a min-h-screen */}
+      <AuroraBackground className="min-h-screen">
         <div className="max-w-5xl w-full mx-auto p-4 flex flex-col items-center justify-center min-h-screen text-center relative">
           <h1
             className="text-5xl sm:text-8xl md:text-9xl font-extrabold tracking-tighter drop-shadow-2xl mb-4 text-sky-400"
@@ -86,7 +50,6 @@ const Index = () => {
       {/* Sección "Nuestra Misión" */}
       <section
         className="relative z-20 bg-gradient-to-b from-black to-gray-900 py-20 px-4 min-h-screen flex items-center justify-center"
-        style={{ opacity: missionOpacity, transform: `translateY(${missionSlideY}px)`, transition: 'opacity 0.5s ease-out, transform 0.5s ease-out' }}
       >
         <div className="max-w-4xl mx-auto">
           <GlassCard className="text-white text-left">
@@ -111,7 +74,6 @@ const Index = () => {
       {/* Sección "Nuestros Valores" */}
       <section
         className="relative z-20 bg-gradient-to-b from-gray-900 to-black py-20 px-4 min-h-screen flex items-center justify-center"
-        style={{ opacity: valuesOpacity, transform: `translateY(${valuesSlideY}px)`, transition: 'opacity 0.5s ease-out, transform 0.5s ease-out' }}
       >
         <div className="max-w-5xl mx-auto">
           <GlassCard className="text-white text-center">

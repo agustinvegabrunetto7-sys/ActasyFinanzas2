@@ -103,28 +103,41 @@
 /* Animación de Aurora Boreal Lineal */
 @keyframes aurora-move {
   from {
-    transform: translateX(-25%);
+    transform: translateX(-25%) translateY(0%);
   }
   to {
-    transform: translateX(25%);
+    transform: translateX(25%) translateY(5%);
+  }
+}
+
+/* Nueva animación para un sutil pulso/parpadeo */
+@keyframes aurora-pulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
   }
 }
 
 .aurora-background {
-  background-image: linear-gradient(
-    to top,
-    rgba(125, 211, 252, 0.3) 0%,
-    rgba(30, 144, 255, 0.2) 30%,
-    transparent 60%
-  );
   position: absolute;
   z-index: 0;
   bottom: 0;
   left: 0;
-  width: 150%;
-  height: 60%;
-  animation: aurora-move 20s ease-in-out infinite alternate;
-  filter: blur(40px);
+  width: 200%; /* Increased width for more movement */
+  height: 100%; /* Increased height to cover more area */
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(125, 211, 252, 0.4) 0%, transparent 60%), /* sky-300 */
+    radial-gradient(circle at 80% 20%, rgba(30, 144, 255, 0.3) 0%, transparent 60%), /* blue-500 */
+    radial-gradient(circle at 50% 50%, rgba(0, 191, 255, 0.2) 0%, transparent 70%); /* deep sky blue */
+  background-size: 100% 100%, 100% 100%, 100% 100%; /* Ensure gradients cover the area */
+  background-position: 0% 0%, 0% 0%, 0% 0%; /* Initial position */
+  animation: aurora-move 20s ease-in-out infinite alternate, aurora-pulse 10s ease-in-out infinite alternate; /* Added aurora-pulse */
+  filter: blur(60px); /* Increased blur */
+  transform-origin: center center; /* For potential scaling/rotation */
 }
 
 /* Neon Glow Effect */

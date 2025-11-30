@@ -8,12 +8,12 @@ interface IntroLoaderProps {
 const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
   const [progress, setProgress] = useState(0);
   const [showLogo, setShowLogo] = useState(false);
-  const [showSubtitleLine, setShowSubtitleLine] = useState(false);
+  const [showSubtitleLine, setShowSubtitleLine] = useState(false); // Mantener el estado para controlar la visibilidad
   const [currentSubtitleWordIndex, setCurrentSubtitleWordIndex] = useState(0);
 
   const mainTextLines = ["ESTUDIANTES", "UNIDOS"];
   const subtitleWords = ["Finanzas", "Actas", "Transparencia"];
-  const loadingDuration = 9000; // 9 segundos
+  const loadingDuration = 13000; // Aumentado a 13 segundos (9 + 4)
   const intervalTime = 50; // Actualizar cada 50ms
 
   // Calcular el total de caracteres para la revelación lineal del texto principal
@@ -30,6 +30,13 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
     const logoTimer = setTimeout(() => {
       setShowLogo(true);
     }, 100);
+
+    // Hacer que la línea del subtítulo aparezca instantáneamente
+    setShowSubtitleLine(true); 
+    const wordCycleInterval = setInterval(() => {
+      setCurrentSubtitleWordIndex((prevIndex) => (prevIndex + 1) % subtitleWords.length);
+    }, loadingDuration / subtitleWords.length); // Ciclar palabras uniformemente durante la duración de la carga
+
 
     let currentProgress = 0;
     const progressInterval = setInterval(() => {
@@ -58,6 +65,7 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
 
       if (currentProgress >= 100) {
         clearInterval(progressInterval);
+        clearInterval(wordCycleInterval); // Limpiar también el intervalo de palabras
         // Permitir un pequeño retraso para que la barra completa sea visible antes de desvanecerse
         setTimeout(() => {
           onComplete();
@@ -65,20 +73,10 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
       }
     }, intervalTime);
 
-    // Mostrar la línea del subtítulo y comenzar el ciclo de palabras después de un retraso
-    const subtitleLineTimer = setTimeout(() => {
-      setShowSubtitleLine(true);
-      const wordCycleInterval = setInterval(() => {
-        setCurrentSubtitleWordIndex((prevIndex) => (prevIndex + 1) % subtitleWords.length);
-      }, loadingDuration / subtitleWords.length); // Ciclar palabras uniformemente durante la duración de la carga
-
-      return () => clearInterval(wordCycleInterval);
-    }, 1500); // Aparece el subtítulo y la línea de carga después de 1.5 segundos
-
     return () => {
       clearTimeout(logoTimer);
-      clearTimeout(subtitleLineTimer);
       clearInterval(progressInterval);
+      clearInterval(wordCycleInterval); // Asegurarse de limpiar el intervalo de palabras
     };
   }, [onComplete, subtitleWords.length, loadingDuration, intervalTime]);
 
@@ -128,7 +126,8 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
       <div
         className={cn(
           "absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-4 transition-all duration-1000 ease-out delay-500",
-          showSubtitleLine ? "opacity-100" : "opacity-0"
+          // showSubtitleLine ? "opacity-100" : "opacity-0" // Ya no es necesario el delay, aparece instantáneo
+          "opacity-100" // Siempre visible desde el inicio
         )}
       >
         <p

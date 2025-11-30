@@ -70,7 +70,7 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
         src="/EUGABLANCO.png"
         alt="Estudiantes Unidos Logo"
         className={cn(
-          "absolute top-[15%] left-1/2 -translate-x-1/2 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 transition-all duration-700 ease-out",
+          "absolute top-[15%] left-1/2 -translate-x-1/2 w-64 h-64 sm:w-64 sm:h-64 md:w-80 md:h-80 transition-all duration-700 ease-out", // Aumentado el tamaño base para móvil
           showLogo ? "opacity-100 scale-100" : "opacity-0 scale-75"
         )}
       />
@@ -88,14 +88,14 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
 
       <div
         className={cn(
-          "absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-4 transition-all duration-1000 ease-out delay-500", // Cambiado a flex-col y space-y
+          "absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-4 transition-all duration-1000 ease-out delay-500",
           showSubtitleLine ? "opacity-100" : "opacity-0"
         )}
       >
         <p
           key={currentSubtitleWordIndex} // Key changes, forcing re-render and animation
           className={cn(
-            "text-xl sm:text-2xl font-medium text-white/90 tracking-wide text-center", // Centrado el texto
+            "text-xl sm:text-2xl font-medium text-white/90 tracking-wide text-center",
             "animate-subtitle-flip-in" // Apply the animation
           )}
         >

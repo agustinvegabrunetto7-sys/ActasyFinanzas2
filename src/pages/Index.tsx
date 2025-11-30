@@ -3,26 +3,38 @@ import AuroraBackground from "@/components/AuroraBackground";
 import ScrollDownIndicator from "@/components/ScrollDownIndicator";
 import MoneySymbols from "@/components/MoneySymbols";
 import GlassCard from "@/components/GlassCard";
+import IntroLoader from "@/components/IntroLoader"; // Import the new IntroLoader
 import React, { useState, useEffect } from "react";
 import { Lightbulb, Handshake, ShieldCheck } from "lucide-react"; // Import icons
 
 const Index = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [showIntro, setShowIntro] = useState(true); // State to control intro visibility
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
+    if (!showIntro) { // Only add scroll listener after intro is complete
+      const handleScroll = () => {
+        setScrollY(window.scrollY);
+      };
 
-    const timeoutId = setTimeout(() => {
-      window.addEventListener("scroll", handleScroll);
-    }, 100);
+      const timeoutId = setTimeout(() => {
+        window.addEventListener("scroll", handleScroll);
+      }, 100);
 
-    return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+      return () => {
+        clearTimeout(timeoutId);
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [showIntro]); // Re-run effect when showIntro changes
+
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+  };
+
+  if (showIntro) {
+    return <IntroLoader onComplete={handleIntroComplete} />;
+  }
 
   // --- Animaciones de la Sección Hero ---
   const heroScrollThreshold = 200; // Píxeles de scroll antes de que la animación del hero se complete

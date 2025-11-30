@@ -27,6 +27,11 @@ const Index = () => {
       {/* Sección Hero */}
       <AuroraBackground className="min-h-screen">
         <div className="max-w-5xl w-full mx-auto p-4 flex flex-col items-center justify-center min-h-screen text-center relative">
+          <img
+            src="/EUGABLANCO.png"
+            alt="Estudiantes Unidos Logo"
+            className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mb-8 drop-shadow-lg"
+          />
           <h1
             className="text-5xl sm:text-8xl md:text-8xl font-extrabold tracking-tighter drop-shadow-2xl mb-4 text-sky-400"
           >

@@ -10,6 +10,7 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
   const [showMainText, setShowMainText] = useState(false);
   const [showSubtitleLine, setShowSubtitleLine] = useState(false);
   const [currentSubtitleWordIndex, setCurrentSubtitleWordIndex] = useState(0);
+  const [showLogo, setShowLogo] = useState(false); // New state for logo visibility
 
   const mainTextLines = ["ESTUDIANTES", "UNIDOS"];
   const combinedTextLength = mainTextLines.join("").length; // Total length for progress calculation
@@ -19,6 +20,11 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
   const totalSteps = loadingDuration / intervalTime;
 
   useEffect(() => {
+    // Show logo after a very short delay
+    const logoTimer = setTimeout(() => {
+      setShowLogo(true);
+    }, 100);
+
     // Show main text after a short delay
     const mainTextTimer = setTimeout(() => {
       setShowMainText(true);
@@ -51,6 +57,7 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
     }, 1500); // Aparece el subtítulo y la línea de carga después de 1.5 segundos
 
     return () => {
+      clearTimeout(logoTimer);
       clearTimeout(mainTextTimer);
       clearTimeout(subtitleLineTimer);
       clearInterval(progressInterval);
@@ -59,6 +66,14 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
 
   return (
     <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black text-white overflow-hidden">
+      <img
+        src="/EUGABLANCO.png"
+        alt="Estudiantes Unidos Logo"
+        className={cn(
+          "w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mb-8 transition-all duration-700 ease-out",
+          showLogo ? "opacity-100 scale-100" : "opacity-0 scale-75"
+        )}
+      />
       {mainTextLines.map((line, lineIndex) => (
         <div
           key={`line-${lineIndex}`}

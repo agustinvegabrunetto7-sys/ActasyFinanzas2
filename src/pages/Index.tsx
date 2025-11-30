@@ -3,8 +3,8 @@ import GlassCard from "@/components/GlassCard";
 
 const Index = () => {
   return (
-    // Establece un fondo oscuro para que el efecto de vidrio funcione bien
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white p-4">
+    // Aplicamos el fondo animado. Usamos min-h-screen y flex para centrar el contenido.
+    <div className="min-h-screen flex flex-col items-center justify-center text-white p-4 animated-gradient-bg">
       <div className="max-w-3xl w-full mx-auto">
         <GlassCard>
           <div className="text-center">

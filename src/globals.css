@@ -99,3 +99,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Animación de fondo para un efecto 'super producido' */
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient-bg {
+  background: linear-gradient(-45deg, #000000, #0f172a, #0ea5e9, #000000);
+  background-size: 400% 400%;
+  animation: gradient-move 15s ease infinite;
+}

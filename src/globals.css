@@ -126,3 +126,21 @@
   animation: aurora-move 20s ease-in-out infinite alternate;
   filter: blur(40px);
 }
+
+/* Neon Glow Effect */
+.neon-glow {
+  text-shadow:
+    0 0 5px rgba(125, 211, 252, 0.7), /* sky-400 with opacity */
+    0 0 10px rgba(125, 211, 252, 0.5),
+    0 0 20px rgba(125, 211, 252, 0.3);
+}
+
+/* Neon Blink Animation */
+@keyframes neon-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-neon-blink {
+  animation: neon-blink 2s ease-in-out infinite alternate;
+}

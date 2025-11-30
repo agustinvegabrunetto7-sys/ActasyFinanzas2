@@ -1,5 +1,6 @@
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import AuroraBackground from "@/components/AuroraBackground";
+import ScrollDownIndicator from "@/components/ScrollDownIndicator"; // Import the new component
 import React, { useState, useEffect } from "react";
 
 const Index = () => {
@@ -49,6 +50,9 @@ const Index = () => {
         </p>
         
       </div>
+      
+      <ScrollDownIndicator /> {/* Add the new component here */}
+
       <div className="absolute bottom-0 w-full">
         <MadeWithDyad />
       </div>

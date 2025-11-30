@@ -11,7 +11,8 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
   const [showSubtitleLine, setShowSubtitleLine] = useState(false);
   const [currentSubtitleWordIndex, setCurrentSubtitleWordIndex] = useState(0);
 
-  const mainText = "ESTUDIANTES UNIDOS";
+  const mainTextLines = ["ESTUDIANTES", "UNIDOS"];
+  const combinedTextLength = mainTextLines.join("").length; // Total length for progress calculation
   const subtitleWords = ["Finanzas", "Actas", "Transparencia"];
   const loadingDuration = 9000; // 9 segundos
   const intervalTime = 50; // Actualizar cada 50ms
@@ -58,35 +59,40 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
 
   return (
     <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black text-white overflow-hidden">
-      <h1
-        className={cn(
-          "text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tighter drop-shadow-2xl transition-all duration-1000 ease-out",
-          showMainText ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        )}
-      >
-        {mainText.split("").map((char, index) => {
-          // Calculate opacity for each character based on progress
-          const charProgressThreshold = (index / mainText.length) * 100;
-          const charOpacity = Math.min(1, Math.max(0.2, (progress - charProgressThreshold + 20) / 20)); // +20 for a slight delay, /20 for transition speed
+      {mainTextLines.map((line, lineIndex) => (
+        <div
+          key={`line-${lineIndex}`}
+          className={cn(
+            "text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tighter drop-shadow-2xl transition-all duration-1000 ease-out",
+            showMainText ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          )}
+        >
+          {line.split("").map((char, charIndex) => {
+            // Calculate overall character index for progress
+            const offset = mainTextLines.slice(0, lineIndex).join("").length;
+            const overallCharIndex = offset + charIndex;
+            const charProgressThreshold = (overallCharIndex / combinedTextLength) * 100;
+            const charOpacity = Math.min(1, Math.max(0.2, (progress - charProgressThreshold + 20) / 20));
 
-          return (
-            <span
-              key={index}
-              style={{
-                color: `rgba(255, 255, 255, ${charOpacity})`, // Animate to white
-                transition: 'color 0.1s linear',
-              }}
-              className="inline-block" // Ensure span respects spacing
-            >
-              {char}
-            </span>
-          );
-        })}
-      </h1>
+            return (
+              <span
+                key={`char-${lineIndex}-${charIndex}`}
+                style={{
+                  color: `rgba(255, 255, 255, ${charOpacity})`,
+                  transition: 'color 0.1s linear',
+                }}
+                className="inline-block"
+              >
+                {char}
+              </span>
+            );
+          })}
+        </div>
+      ))}
 
       <div
         className={cn(
-          "mt-8 flex items-center space-x-4 transition-all duration-1000 ease-out delay-500",
+          "absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center space-x-4 transition-all duration-1000 ease-out delay-500",
           showSubtitleLine ? "opacity-100" : "opacity-0"
         )}
       >

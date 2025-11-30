@@ -70,7 +70,7 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
         src="/EUGABLANCO.png"
         alt="Estudiantes Unidos Logo"
         className={cn(
-          "w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 mb-12 transition-all duration-700 ease-out", // Aumentado el tamaño y el margen
+          "absolute top-[15%] left-1/2 -translate-x-1/2 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 transition-all duration-700 ease-out",
           showLogo ? "opacity-100 scale-100" : "opacity-0 scale-75"
         )}
       />
@@ -82,26 +82,7 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
             showMainText ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           )}
         >
-          {line.split("").map((char, charIndex) => {
-            // Calculate overall character index for progress
-            const offset = mainTextLines.slice(0, lineIndex).join("").length;
-            const overallCharIndex = offset + charIndex;
-            const charProgressThreshold = (overallCharIndex / combinedTextLength) * 100;
-            const charOpacity = Math.min(1, Math.max(0.2, (progress - charProgressThreshold + 20) / 20));
-
-            return (
-              <span
-                key={`char-${lineIndex}-${charIndex}`}
-                style={{
-                  color: `rgba(255, 255, 255, ${charOpacity})`,
-                  transition: 'color 0.1s linear',
-                }}
-                className="inline-block"
-              >
-                {char}
-              </span>
-            );
-          })}
+          {line}
         </div>
       ))}
 

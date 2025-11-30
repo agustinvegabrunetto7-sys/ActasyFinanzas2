@@ -4,10 +4,12 @@ import GlassCard from "@/components/GlassCard";
 import IntroLoader from "@/components/IntroLoader";
 import React, { useState, useEffect } from "react";
 import { Lightbulb, Handshake, ShieldCheck } from "lucide-react"; // Import icons
+import { cn } from "@/lib/utils"; // Import cn for conditional class names
 
 const Index = () => {
   const [scrollY, setScrollY] = useState(0);
   const [showIntro, setShowIntro] = useState(true); // State to control intro visibility
+  const [heroAnimated, setHeroAnimated] = useState(false); // New state for hero section animation
 
   useEffect(() => {
     if (!showIntro) { // Only add scroll listener after intro is complete
@@ -28,6 +30,10 @@ const Index = () => {
 
   const handleIntroComplete = () => {
     setShowIntro(false);
+    // Trigger hero animation shortly after intro unmounts
+    setTimeout(() => {
+      setHeroAnimated(true);
+    }, 100);
   };
 
   if (showIntro) {
@@ -58,13 +64,25 @@ const Index = () => {
       <AuroraBackground className="min-h-[150vh]"> {/* Ajustado min-h para una mejor transición */}
         <div className="max-w-5xl w-full mx-auto p-4 flex flex-col items-center justify-center min-h-screen text-center relative">
           <h1
-            className="text-6xl sm:text-8xl md:text-9xl font-extrabold tracking-tighter text-sky-400 drop-shadow-2xl mb-4"
+            className={cn(
+              "text-6xl sm:text-8xl md:text-9xl font-extrabold tracking-tighter drop-shadow-2xl mb-4",
+              "transition-all duration-1000 ease-out",
+              heroAnimated
+                ? "opacity-100 translate-y-0 scale-100 text-sky-400"
+                : "opacity-0 translate-y-10 scale-95 text-gray-400" // Start slightly transparent, smaller, lower, and muted white
+            )}
           >
             ESTUDIANTES UNIDOS
           </h1>
 
           <p
-            className="text-xl sm:text-2xl md:text-3xl font-medium text-white/90 tracking-wide"
+            className={cn(
+              "text-xl sm:text-2xl md:text-3xl font-medium tracking-wide",
+              "transition-all duration-1000 ease-out delay-200", // Add a slight delay for the subtitle
+              heroAnimated
+                ? "opacity-100 translate-y-0 text-white/90"
+                : "opacity-0 translate-y-5 text-gray-500" // Start slightly transparent, lower, and muted white
+            )}
           >
             Secretaria de Actas y Finanzas.
           </p>

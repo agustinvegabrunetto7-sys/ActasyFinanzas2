@@ -31,6 +31,9 @@ const Index = () => {
 
   return (
     <AuroraBackground className="min-h-[150vh]"> {/* Make it scrollable */}
+      
+      <ScrollDownIndicator /> {/* Add the new component here, at the top */}
+
       <div className="max-w-5xl w-full mx-auto p-4 flex flex-col items-center justify-center min-h-screen text-center">
         
         {/* Título principal: Grande, negrita, celeste brillante */}
@@ -51,8 +54,6 @@ const Index = () => {
         
       </div>
       
-      <ScrollDownIndicator /> {/* Add the new component here */}
-
       <div className="absolute bottom-0 w-full">
         <MadeWithDyad />
       </div>

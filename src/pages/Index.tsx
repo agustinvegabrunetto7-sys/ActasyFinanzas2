@@ -57,16 +57,6 @@ const Index = () => {
             <p className="text-lg mb-4 leading-relaxed">
               En Estudiantes Unidos, la División Actas y Finanzas se dedica a garantizar la transparencia y eficiencia en la gestión de los recursos de nuestra comunidad estudiantil. Nos esforzamos por mantener registros precisos y accesibles, asegurando que cada decisión financiera refleje los intereses y necesidades de nuestros miembros.
             </p>
-            <p className="text-lg mb-6 leading-relaxed">
-              Trabajamos incansablemente para fomentar una cultura de responsabilidad fiscal y participación activa, empoderando a los estudiantes con la información necesaria para tomar decisiones informadas y contribuir al crecimiento sostenible de nuestra organización.
-            </p>
-            <div className="mt-8 flex justify-center">
-              <img
-                src="/FINANZAS.jpg"
-                alt="Finanzas"
-                className="rounded-lg shadow-lg max-w-full h-auto md:max-w-md lg:max-w-lg"
-              />
-            </div>
           </GlassCard>
         </div>
       </section>

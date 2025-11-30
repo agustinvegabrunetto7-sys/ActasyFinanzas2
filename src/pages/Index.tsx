@@ -2,8 +2,9 @@ import { MadeWithDyad } from "@/components/made-with-dyad";
 import AuroraBackground from "@/components/AuroraBackground";
 import ScrollDownIndicator from "@/components/ScrollDownIndicator";
 import MoneySymbols from "@/components/MoneySymbols";
-import GlassCard from "@/components/GlassCard"; // Import the GlassCard component
+import GlassCard from "@/components/GlassCard";
 import React, { useState, useEffect } from "react";
+import { Lightbulb, Handshake, ShieldCheck } from "lucide-react"; // Import icons
 
 const Index = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -32,19 +33,28 @@ const Index = () => {
   const subtitleTranslateY = heroTranslateY * 0.6;
   const subtitleStaticOffsetY = 68; // Offset estático estimado para el subtítulo
 
-  // --- Animaciones de la Nueva Sección de Contenido ---
-  const contentStartScroll = 500; // Posición de scroll donde el nuevo contenido empieza a aparecer
-  const contentEndScroll = 800;   // Posición de scroll donde la animación del nuevo contenido se completa
+  // --- Animaciones de la Sección "Nuestra Misión" ---
+  const missionStartScroll = 500; // Posición de scroll donde la misión empieza a aparecer
+  const missionEndScroll = 800;   // Posición de scroll donde la animación de la misión se completa
 
-  const contentProgress = Math.min(1, Math.max(0, (scrollY - contentStartScroll) / (contentEndScroll - contentStartScroll)));
+  const missionProgress = Math.min(1, Math.max(0, (scrollY - missionStartScroll) / (missionEndScroll - missionStartScroll)));
 
-  const contentOpacity = contentProgress;
-  const contentSlideY = Math.max(0, 50 - contentProgress * 50); // Se desliza hacia arriba de 50px a 0px
+  const missionOpacity = missionProgress;
+  const missionSlideY = Math.max(0, 50 - missionProgress * 50); // Se desliza hacia arriba de 50px a 0px
+
+  // --- Animaciones de la Sección "Nuestros Valores" ---
+  const valuesStartScroll = 1000; // Posición de scroll donde los valores empiezan a aparecer
+  const valuesEndScroll = 1300;   // Posición de scroll donde la animación de los valores se completa
+
+  const valuesProgress = Math.min(1, Math.max(0, (scrollY - valuesStartScroll) / (valuesEndScroll - valuesStartScroll)));
+
+  const valuesOpacity = valuesProgress;
+  const valuesSlideY = Math.max(0, 50 - valuesProgress * 50); // Se desliza hacia arriba de 50px a 0px
 
   return (
     <>
       {/* Sección Hero */}
-      <AuroraBackground className="min-h-[120vh]"> {/* Ajustado min-h para una mejor transición */}
+      <AuroraBackground className="min-h-[150vh]"> {/* Ajustado min-h para una mejor transición */}
         <ScrollDownIndicator />
 
         <div className="max-w-5xl w-full mx-auto p-4 flex flex-col items-center justify-center min-h-screen text-center relative">
@@ -70,14 +80,14 @@ const Index = () => {
         </div>
       </AuroraBackground>
 
-      {/* Nueva Sección de Contenido */}
+      {/* Sección "Nuestra Misión" */}
       <section
         className="relative z-20 bg-gradient-to-b from-black to-gray-900 py-20 px-4 min-h-screen flex items-center justify-center"
-        style={{ opacity: contentOpacity, transform: `translateY(${contentSlideY}px)`, transition: 'opacity 0.5s ease-out, transform 0.5s ease-out' }}
+        style={{ opacity: missionOpacity, transform: `translateY(${missionSlideY}px)`, transition: 'opacity 0.5s ease-out, transform 0.5s ease-out' }}
       >
         <div className="max-w-4xl mx-auto">
           <GlassCard className="text-white text-left">
-            <h2 className="text-4xl font-bold text-sky-300 mb-6 neon-glow">Nuestra Misión</h2>
+            <h2 className="text-4xl font-bold text-sky-300 mb-6 neon-glow text-center">Nuestra Misión</h2>
             <p className="text-lg mb-4 leading-relaxed">
               En Estudiantes Unidos, la División Actas y Finanzas se dedica a garantizar la transparencia y eficiencia en la gestión de los recursos de nuestra comunidad estudiantil. Nos esforzamos por mantener registros precisos y accesibles, asegurando que cada decisión financiera refleje los intereses y necesidades de nuestros miembros.
             </p>
@@ -95,8 +105,43 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Sección "Nuestros Valores" */}
+      <section
+        className="relative z-20 bg-gradient-to-b from-gray-900 to-black py-20 px-4 min-h-screen flex items-center justify-center"
+        style={{ opacity: valuesOpacity, transform: `translateY(${valuesSlideY}px)`, transition: 'opacity 0.5s ease-out, transform 0.5s ease-out' }}
+      >
+        <div className="max-w-5xl mx-auto">
+          <GlassCard className="text-white text-center">
+            <h2 className="text-4xl font-bold text-sky-300 mb-10 neon-glow">Nuestros Valores</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="flex flex-col items-center p-6 bg-black/30 rounded-xl border border-sky-500/30 shadow-lg hover:shadow-sky-400/50 transition-shadow duration-300">
+                <Lightbulb className="w-16 h-16 text-sky-400 mb-4 neon-glow" />
+                <h3 className="text-2xl font-semibold text-white mb-2">Innovación</h3>
+                <p className="text-gray-300 text-center">
+                  Buscamos constantemente nuevas formas de mejorar y optimizar nuestros procesos financieros.
+                </p>
+              </div>
+              <div className="flex flex-col items-center p-6 bg-black/30 rounded-xl border border-sky-500/30 shadow-lg hover:shadow-sky-400/50 transition-shadow duration-300">
+                <Handshake className="w-16 h-16 text-sky-400 mb-4 neon-glow" />
+                <h3 className="text-2xl font-semibold text-white mb-2">Transparencia</h3>
+                <p className="text-gray-300 text-center">
+                  Garantizamos la claridad y accesibilidad de toda la información financiera.
+                </p>
+              </div>
+              <div className="flex flex-col items-center p-6 bg-black/30 rounded-xl border border-sky-500/30 shadow-lg hover:shadow-sky-400/50 transition-shadow duration-300">
+                <ShieldCheck className="w-16 h-16 text-sky-400 mb-4 neon-glow" />
+                <h3 className="text-2xl font-semibold text-white mb-2">Integridad</h3>
+                <p className="text-gray-300 text-center">
+                  Actuamos con honestidad y ética en todas nuestras gestiones y decisiones.
+                </p>
+              </div>
+            </div>
+          </GlassCard>
+        </div>
+      </section>
+
       {/* Made with Dyad al final de la página */}
-      <div className="w-full bg-gray-900"> {/* Asegura un fondo para el componente */}
+      <div className="w-full bg-black py-8"> {/* Asegura un fondo para el componente */}
         <MadeWithDyad />
       </div>
     </>

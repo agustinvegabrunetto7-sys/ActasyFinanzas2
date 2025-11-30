@@ -85,10 +85,21 @@ export default {
             height: "0",
           },
         },
+        "subtitle-flip-in": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(10px) rotateX(-90deg)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0) rotateX(0deg)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "subtitle-flip-in": "subtitle-flip-in 0.6s ease-out forwards",
       },
     },
   },

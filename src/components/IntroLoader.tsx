@@ -102,7 +102,13 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
             style={{ width: `${progress}%` }}
           />
         </div>
-        <p className="text-xl sm:text-2xl font-medium text-white/90 tracking-wide min-w-[120px] text-left">
+        <p
+          key={currentSubtitleWordIndex} // Key changes, forcing re-render and animation
+          className={cn(
+            "text-xl sm:text-2xl font-medium text-white/90 tracking-wide min-w-[120px] text-left",
+            "animate-subtitle-flip-in" // Apply the animation
+          )}
+        >
           {subtitleWords[currentSubtitleWordIndex]}
         </p>
       </div>

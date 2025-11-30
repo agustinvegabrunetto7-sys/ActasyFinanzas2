@@ -73,7 +73,7 @@ const Index = () => {
                 <Lightbulb className="w-16 h-16 text-sky-400 mb-4 neon-glow" />
                 <h3 className="text-2xl font-semibold text-white mb-2">Innovación</h3>
                 <p className="text-gray-300 text-center">
-                  Buscamos constantemente nuevas formas de mejorar y optimizar nuestros procesos financieros.
+                  Buscamos constantemente nuevas formas de mejorar y optimizar la forma de cumunicación de nuestras decisiones, como esta web.
                 </p>
               </div>
               <div className="flex flex-col items-center p-6 bg-black/30 rounded-xl border border-sky-500/30 shadow-lg hover:shadow-sky-400/50 transition-shadow duration-300">

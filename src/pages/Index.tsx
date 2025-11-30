@@ -80,7 +80,7 @@ const Index = () => {
                 <Handshake className="w-16 h-16 text-sky-400 mb-4 neon-glow" />
                 <h3 className="text-2xl font-semibold text-white mb-2">Transparencia</h3>
                 <p className="text-gray-300 text-center">
-                  Garantizamos la claridad y accesibilidad de toda la información financiera.
+                  Garantizamos la claridad y accesibilidad de toda la información financiera con esta página.
                 </p>
               </div>
               <div className="flex flex-col items-center p-6 bg-black/30 rounded-xl border border-sky-500/30 shadow-lg hover:shadow-sky-400/50 transition-shadow duration-300">

@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"; // Import cn for conditional class names
 const Index = () => {
   const [scrollY, setScrollY] = useState(0);
   const [showIntro, setShowIntro] = useState(true); // State to control intro visibility
-  const [heroAnimated, setHeroAnimated] = useState(false); // New state for hero section animation
+  const [heroAnimated, setHeroAnimated] = useState(false); // State for subtitle animation
 
   useEffect(() => {
     if (!showIntro) { // Only add scroll listener after intro is complete
@@ -30,7 +30,7 @@ const Index = () => {
 
   const handleIntroComplete = () => {
     setShowIntro(false);
-    // Trigger hero animation shortly after intro unmounts
+    // Trigger subtitle animation shortly after intro unmounts
     setTimeout(() => {
       setHeroAnimated(true);
     }, 100);
@@ -61,16 +61,10 @@ const Index = () => {
   return (
     <>
       {/* Sección Hero */}
-      <AuroraBackground className="min-h-[150vh]"> {/* Ajustado min-h para una mejor transición */}
+      <AuroraBackground className="min-h-screen"> {/* Ajustado a min-h-screen */}
         <div className="max-w-5xl w-full mx-auto p-4 flex flex-col items-center justify-center min-h-screen text-center relative">
           <h1
-            className={cn(
-              "text-6xl sm:text-8xl md:text-9xl font-extrabold tracking-tighter drop-shadow-2xl mb-4",
-              "transition-all duration-1000 ease-out",
-              heroAnimated
-                ? "opacity-100 translate-y-0 scale-100 text-sky-400"
-                : "opacity-0 translate-y-10 scale-95 text-gray-400" // Start slightly transparent, smaller, lower, and muted white
-            )}
+            className="text-6xl sm:text-8xl md:text-9xl font-extrabold tracking-tighter drop-shadow-2xl mb-4 text-sky-400"
           >
             ESTUDIANTES UNIDOS
           </h1>

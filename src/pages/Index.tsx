@@ -1,9 +1,7 @@
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import AuroraBackground from "@/components/AuroraBackground";
-import ScrollDownIndicator from "@/components/ScrollDownIndicator";
-import MoneySymbols from "@/components/MoneySymbols";
 import GlassCard from "@/components/GlassCard";
-import IntroLoader from "@/components/IntroLoader"; // Import the new IntroLoader
+import IntroLoader from "@/components/IntroLoader";
 import React, { useState, useEffect } from "react";
 import { Lightbulb, Handshake, ShieldCheck } from "lucide-react"; // Import icons
 
@@ -36,15 +34,6 @@ const Index = () => {
     return <IntroLoader onComplete={handleIntroComplete} />;
   }
 
-  // --- Animaciones de la Sección Hero ---
-  const heroScrollThreshold = 200; // Píxeles de scroll antes de que la animación del hero se complete
-
-  const heroOpacity = Math.min(1, scrollY / heroScrollThreshold);
-  const heroTranslateY = Math.max(0, 40 - (scrollY / heroScrollThreshold) * 40);
-
-  const subtitleTranslateY = heroTranslateY * 0.6;
-  const subtitleStaticOffsetY = 68; // Offset estático estimado para el subtítulo
-
   // --- Animaciones de la Sección "Nuestra Misión" ---
   const missionStartScroll = 500; // Posición de scroll donde la misión empieza a aparecer
   const missionEndScroll = 800;   // Posición de scroll donde la animación de la misión se completa
@@ -67,27 +56,17 @@ const Index = () => {
     <>
       {/* Sección Hero */}
       <AuroraBackground className="min-h-[150vh]"> {/* Ajustado min-h para una mejor transición */}
-        <ScrollDownIndicator />
-
         <div className="max-w-5xl w-full mx-auto p-4 flex flex-col items-center justify-center min-h-screen text-center relative">
-          <MoneySymbols
-            scrollY={scrollY}
-            subtitleTranslateY={subtitleTranslateY}
-            subtitleStaticOffsetY={subtitleStaticOffsetY}
-          />
-
           <h1
             className="text-6xl sm:text-8xl md:text-9xl font-extrabold tracking-tighter text-sky-400 drop-shadow-2xl mb-4"
-            style={{ opacity: heroOpacity, transform: `translateY(${heroTranslateY}px)`, transition: 'opacity 0.3s ease-out, transform 0.3s ease-out' }}
           >
             ESTUDIANTES UNIDOS
           </h1>
 
           <p
             className="text-xl sm:text-2xl md:text-3xl font-medium text-white/90 tracking-wide"
-            style={{ opacity: heroOpacity, transform: `translateY(${subtitleTranslateY}px)`, transition: 'opacity 0.3s ease-out, transform 0.3s ease-out' }}
           >
-            División Actas y Finanzas.
+            Secretaria de Actas y Finanzas.
           </p>
         </div>
       </AuroraBackground>

@@ -30,7 +30,11 @@ const Index = () => {
           <img
             src="/EUGABLANCO.png"
             alt="Estudiantes Unidos Logo"
-            className="absolute top-[5%] left-1/2 -translate-x-1/2 w-64 h-64 sm:w-40 sm:h-40 md:w-48 md:h-48 drop-shadow-lg" // Movido aún más arriba (de top-[10%] a top-[5%])
+            className="absolute top-[5%] left-1/2 -translate-x-1/2 
+                       w-[calc(256px*0.97)] h-[calc(256px*0.97)] 
+                       sm:w-[calc(160px*0.97)] sm:h-[calc(160px*0.97)] 
+                       md:w-[calc(192px*0.97)] md:h-[calc(192px*0.97)] 
+                       drop-shadow-lg" // Reducido en un 3%
           />
           <h1
             className="text-5xl sm:text-8xl md:text-8xl font-extrabold tracking-tighter drop-shadow-2xl mb-4 text-sky-400"

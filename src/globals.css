@@ -100,17 +100,35 @@
   }
 }
 
-/* Animación de fondo para un efecto 'super producido' */
-@keyframes gradient-move {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Animación de Aurora Boreal */
+@keyframes aurora-wave {
+  0% {
+    transform: translateX(0) scaleY(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(50%) scaleY(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(0) scaleY(1);
+    opacity: 0.5;
+  }
 }
 
-.animated-gradient-bg {
-  /* Colores más serios: Negro, Azul Marino Oscuro, Azul Profundo (menos saturado) */
-  background: linear-gradient(-45deg, #0a0a0a, #1e293b, #1d4ed8, #0a0a0a);
-  background-size: 400% 400%;
-  /* Movimiento más lento y sutil */
-  animation: gradient-move 30s ease infinite;
+.aurora-layer-1 {
+  background: radial-gradient(circle at 50% 100%, rgba(30, 144, 255, 0.5), transparent 70%);
+  animation: aurora-wave 40s ease-in-out infinite alternate;
+}
+
+.aurora-layer-2 {
+  background: radial-gradient(circle at 30% 100%, rgba(0, 191, 255, 0.4), transparent 60%);
+  animation: aurora-wave 35s ease-in-out infinite alternate-reverse;
+  transform: translateX(-20%);
+}
+
+.aurora-layer-3 {
+  background: radial-gradient(circle at 70% 100%, rgba(125, 211, 252, 0.3), transparent 50%);
+  animation: aurora-wave 45s linear infinite alternate;
+  transform: translateX(20%);
 }

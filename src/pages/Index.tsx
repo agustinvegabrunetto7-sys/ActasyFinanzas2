@@ -30,7 +30,7 @@ const Index = () => {
           <img
             src="/EUGABLANCO.png"
             alt="Estudiantes Unidos Logo"
-            className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mb-8 drop-shadow-lg"
+            className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mb-12 drop-shadow-lg" // Aumentado el tamaño y el margen
           />
           <h1
             className="text-5xl sm:text-8xl md:text-8xl font-extrabold tracking-tighter drop-shadow-2xl mb-4 text-sky-400"

@@ -70,7 +70,7 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
         src="/EUGABLANCO.png"
         alt="Estudiantes Unidos Logo"
         className={cn(
-          "w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mb-8 transition-all duration-700 ease-out",
+          "w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 mb-12 transition-all duration-700 ease-out", // Aumentado el tamaño y el margen
           showLogo ? "opacity-100 scale-100" : "opacity-0 scale-75"
         )}
       />

@@ -15,7 +15,8 @@ const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
           // Glassmorphism: fondo negro semi-transparente, borde celeste (sky-400)
           "bg-black/20 border border-sky-400/40",
           // Sombra externa para profundidad y un toque 'super producido' con sombra interna para efecto 'gota de agua'
-          "shadow-[0_0_30px_rgba(125,211,252,0.1),_inset_0_1px_0_rgba(255,255,255,0.08),_inset_1px_0_0_rgba(255,255,255,0.03)] hover:shadow-[0_0_50px_rgba(125,211,252,0.3)]",
+          // La sombra de hover se moverá a Index.tsx para controlarla con scroll
+          "shadow-[0_0_30px_rgba(125,211,252,0.1),_inset_0_1px_0_rgba(255,255,255,0.08),_inset_1px_0_0_rgba(255,255,255,0.03)]",
           className
         )}
         {...props}

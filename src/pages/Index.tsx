@@ -2,13 +2,23 @@ import { MadeWithDyad } from "@/components/made-with-dyad";
 import AuroraBackground from "@/components/AuroraBackground";
 import GlassCard from "@/components/GlassCard";
 import IntroLoader from "@/components/IntroLoader";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react"; // Importa useRef
 import { Lightbulb, Handshake, ShieldCheck } from "lucide-react"; // Import icons
 import { cn } from "@/lib/utils"; // Import cn for conditional class names
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true); // State to control intro visibility
   const [heroAnimated, setHeroAnimated] = useState(false); // State for subtitle animation
+
+  // Estados para controlar la activación de la sombra de las tarjetas al hacer scroll
+  const [innovationCardActive, setInnovationCardActive] = useState(false);
+  const [transparencyCardActive, setTransparencyCardActive] = useState(false);
+  const [integrityCardActive, setIntegrityCardActive] = useState(false);
+
+  // Referencias para cada tarjeta
+  const innovationCardRef = useRef<HTMLDivElement>(null);
+  const transparencyCardRef = useRef<HTMLDivElement>(null);
+  const integrityCardRef = useRef<HTMLDivElement>(null);
 
   const handleIntroComplete = () => {
     setShowIntro(false);
@@ -17,6 +27,40 @@ const Index = () => {
       setHeroAnimated(true);
     }, 100);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Umbral para activar la animación (ej. cuando el 75% del elemento es visible)
+      const scrollThreshold = window.innerHeight * 0.75;
+
+      if (innovationCardRef.current) {
+        const rect = innovationCardRef.current.getBoundingClientRect();
+        if (rect.top < scrollThreshold && rect.bottom > 0) {
+          setInnovationCardActive(true);
+        }
+      }
+      if (transparencyCardRef.current) {
+        const rect = transparencyCardRef.current.getBoundingClientRect();
+        if (rect.top < scrollThreshold && rect.bottom > 0) {
+          setTransparencyCardActive(true);
+        }
+      }
+      if (integrityCardRef.current) {
+        const rect = integrityCardRef.current.getBoundingClientRect();
+        if (rect.top < scrollThreshold && rect.bottom > 0) {
+          setIntegrityCardActive(true);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    // Ejecutar una vez al cargar para activar si ya están en vista
+    handleScroll(); 
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); // Se ejecuta solo una vez al montar el componente
 
   if (showIntro) {
     return <IntroLoader onComplete={handleIntroComplete} />;
@@ -78,21 +122,39 @@ const Index = () => {
           <GlassCard className="text-white text-center">
             <h2 className="text-4xl font-bold text-sky-300 mb-10 neon-glow">Nuestros Valores</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="flex flex-col items-center p-6 bg-black/30 rounded-xl border border-sky-500/30 shadow-lg hover:shadow-sky-400/50 transition-shadow duration-300">
+              <div 
+                ref={innovationCardRef}
+                className={cn(
+                  "flex flex-col items-center p-6 bg-black/30 rounded-xl border border-sky-500/30 shadow-lg transition-shadow duration-300",
+                  innovationCardActive && "shadow-sky-400/50" // Aplica la sombra al hacer scroll
+                )}
+              >
                 <Lightbulb className="w-16 h-16 text-sky-400 mb-4 neon-glow" />
                 <h3 className="text-2xl font-semibold text-white mb-2">Innovación</h3>
                 <p className="text-gray-300 text-center">
                   Buscamos constantemente nuevas formas de mejorar y optimizar nuestros procesos financieros.
                 </p>
               </div>
-              <div className="flex flex-col items-center p-6 bg-black/30 rounded-xl border border-sky-500/30 shadow-lg hover:shadow-sky-400/50 transition-shadow duration-300">
+              <div 
+                ref={transparencyCardRef}
+                className={cn(
+                  "flex flex-col items-center p-6 bg-black/30 rounded-xl border border-sky-500/30 shadow-lg transition-shadow duration-300",
+                  transparencyCardActive && "shadow-sky-400/50" // Aplica la sombra al hacer scroll
+                )}
+              >
                 <Handshake className="w-16 h-16 text-sky-400 mb-4 neon-glow" />
                 <h3 className="text-2xl font-semibold text-white mb-2">Transparencia</h3>
                 <p className="text-gray-300 text-center">
                   Garantizamos la claridad y accesibilidad de toda la información financiera.
                 </p>
               </div>
-              <div className="flex flex-col items-center p-6 bg-black/30 rounded-xl border border-sky-500/30 shadow-lg hover:shadow-sky-400/50 transition-shadow duration-300">
+              <div 
+                ref={integrityCardRef}
+                className={cn(
+                  "flex flex-col items-center p-6 bg-black/30 rounded-xl border border-sky-500/30 shadow-lg transition-shadow duration-300",
+                  integrityCardActive && "shadow-sky-400/50" // Aplica la sombra al hacer scroll
+                )}
+              >
                 <ShieldCheck className="w-16 h-16 text-sky-400 mb-4 neon-glow" />
                 <h3 className="text-2xl font-semibold text-white mb-2">Integridad</h3>
                 <p className="text-gray-300 text-center">

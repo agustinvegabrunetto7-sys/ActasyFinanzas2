@@ -28,7 +28,7 @@ const Index = () => {
       <AuroraBackground className="min-h-screen">
         <div className="max-w-5xl w-full mx-auto p-4 flex flex-col items-center justify-center min-h-screen text-center relative">
           <h1
-            className="text-5xl sm:text-8xl md:text-9xl font-extrabold tracking-tighter drop-shadow-2xl mb-4 text-sky-400"
+            className="text-5xl sm:text-8xl md:text-8xl font-extrabold tracking-tighter drop-shadow-2xl mb-4 text-sky-400"
           >
             ESTUDIANTES UNIDOS
           </h1>

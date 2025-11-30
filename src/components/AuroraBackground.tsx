@@ -14,15 +14,7 @@ const AuroraBackground = ({ children, className, ...props }: AuroraBackgroundPro
       )}
       {...props}
     >
-      <div className="absolute inset-0 z-0">
-        {/* Capa de fondo oscuro */}
-        <div className="absolute inset-0 bg-black/90" />
-        
-        {/* Capas de Aurora (simulando ondas de luz) */}
-        <div className="aurora-layer-1 absolute bottom-0 left-0 w-full h-1/2 opacity-50" />
-        <div className="aurora-layer-2 absolute bottom-0 left-0 w-full h-1/3 opacity-40" />
-        <div className="aurora-layer-3 absolute bottom-0 left-0 w-full h-1/4 opacity-30" />
-      </div>
+      <div className="aurora-background" />
       
       {/* Contenido (título, etc.) */}
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">

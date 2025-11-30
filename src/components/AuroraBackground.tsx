@@ -16,6 +16,9 @@ const AuroraBackground = ({ children, className, ...props }: AuroraBackgroundPro
     >
       <div className="aurora-background" />
       
+      {/* Degradado en la parte inferior para una transición suave */}
+      <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent z-10" />
+      
       {/* Contenido (título, etc.) */}
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
         {children}

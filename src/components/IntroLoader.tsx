@@ -88,25 +88,25 @@ const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
 
       <div
         className={cn(
-          "absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center space-x-4 transition-all duration-1000 ease-out delay-500",
+          "absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-4 transition-all duration-1000 ease-out delay-500", // Cambiado a flex-col y space-y
           showSubtitleLine ? "opacity-100" : "opacity-0"
         )}
       >
+        <p
+          key={currentSubtitleWordIndex} // Key changes, forcing re-render and animation
+          className={cn(
+            "text-xl sm:text-2xl font-medium text-white/90 tracking-wide text-center", // Centrado el texto
+            "animate-subtitle-flip-in" // Apply the animation
+          )}
+        >
+          {subtitleWords[currentSubtitleWordIndex]}
+        </p>
         <div className="w-40 h-[2px] bg-gray-700 rounded-full overflow-hidden">
           <div
             className="h-full bg-sky-400 transition-all duration-50 ease-linear"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <p
-          key={currentSubtitleWordIndex} // Key changes, forcing re-render and animation
-          className={cn(
-            "text-xl sm:text-2xl font-medium text-white/90 tracking-wide min-w-[120px] text-left",
-            "animate-subtitle-flip-in" // Apply the animation
-          )}
-        >
-          {subtitleWords[currentSubtitleWordIndex]}
-        </p>
       </div>
     </div>
   );
